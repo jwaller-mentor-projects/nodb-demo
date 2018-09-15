@@ -3,8 +3,8 @@ import axios from "axios";
 import "./Rockets.css";
 
 class Rockets extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       rockets: []
     };
@@ -17,11 +17,12 @@ class Rockets extends Component {
     });
   }
 
-  handleAdd = rocket => {
-    axios.post("/api/favorites", rocket);
-  };
+  //   handleAdd = rocket => {
+  //     axios.post("/api/favorites", rocket);
+  //     // axios.get("/api/rockets");
+  //   };
 
-  render() {
+  render(props) {
     console.log("state: ", this.state);
     let myRockets = this.state.rockets.map(rocket => {
       return (
@@ -30,7 +31,7 @@ class Rockets extends Component {
           <h6>Cost per launch: {rocket.cost_per_launch}</h6>
           <button
             onClick={() => {
-              this.handleAdd({ name: rocket.name, id: rocket.rocketid });
+              this.props.handleAdd({ name: rocket.name, id: rocket.rocketid });
             }}
           >
             Add to List

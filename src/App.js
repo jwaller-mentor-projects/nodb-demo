@@ -19,6 +19,24 @@ class App extends Component {
     });
   }
 
+  handleAdd = rocket => {
+    axios.post("/api/favorites", rocket).then(() => {
+      axios.get("/api/favorites").then(response => {
+        // console.log("mount response: ", response);
+        this.setState({ favorites: response.data });
+      });
+    });
+  };
+
+  deleteHandler = id => {
+    axios.delete(`/api/rocket/${id}`).then(() => {
+      axios.get("/api/favorites").then(response => {
+        // console.log("mount response: ", response);
+        this.setState({ favorites: response.data });
+      });
+    });
+  };
+
   render() {
     console.log("favs array: ", this.state.favorites);
     return (
@@ -26,8 +44,11 @@ class App extends Component {
         <header className="App-header">
           <h1 className="App-title">Welcome to React</h1>
         </header>
-        <Rockets />
-        <Favorites favorites={this.state.favorites} />
+        <Rockets handleAdd={this.handleAdd} />
+        <Favorites
+          favorites={this.state.favorites}
+          deleteHandler={this.deleteHandler}
+        />
       </div>
     );
   }

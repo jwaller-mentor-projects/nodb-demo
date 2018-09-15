@@ -23,11 +23,11 @@ class Favorites extends Component {
     this.setState({ userInput: e.target.value });
   };
 
-  deleteHandler = id => {
-    axios.delete(`/api/rocket/${id}`).then(response => {
-      console.log(response);
-    });
-  };
+  // deleteHandler = id => {
+  //   axios.delete(`/api/rocket/${id}`).then(response => {
+  //     console.log(response);
+  //   });
+  // };
 
   editHandler = id => {
     axios
@@ -51,7 +51,7 @@ class Favorites extends Component {
           />
           <button
             onClick={() => {
-              this.deleteHandler(rocket.id);
+              this.props.deleteHandler(rocket.id);
             }}
           >
             delete

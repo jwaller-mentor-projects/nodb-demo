@@ -6,36 +6,17 @@ class Favorites extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      // favorites: []
       userInput: ""
     };
   }
 
-  //   componentDidMount() {
-  //     // console.log("Hello from favorites");
-  //     axios.get("/api/favorites").then(response => {
-  //       console.log("mount response: ", response);
-  //       this.setState({ favorites: response.data });
-  //     });
-  //   }
-
-  handleChange = e => {
-    this.setState({ userInput: e.target.value });
-  };
-
-  // deleteHandler = id => {
-  //   axios.delete(`/api/rocket/${id}`).then(response => {
-  //     console.log(response);
-  //   });
-  // };
-
-  editHandler = id => {
-    axios
-      .put(`/api/rocket/${id}`, { name: this.state.userInput })
-      .then(response => {
-        console.log(response);
-      });
-  };
+  componentDidMount() {
+    // console.log("Hello from favorites");
+    axios.get("/api/favorites").then(response => {
+      console.log("mount response: ", response);
+      this.setState({ favorites: response.data });
+    });
+  }
 
   render(props) {
     console.log(this.props);
@@ -47,7 +28,7 @@ class Favorites extends Component {
           <p>{rocket.name}</p>
           <input
             placeholder="Enter New Name"
-            onChange={e => this.handleChange(e)}
+            onChange={e => this.props.handleChange(e)}
           />
           <button
             onClick={() => {
@@ -58,7 +39,7 @@ class Favorites extends Component {
           </button>
           <button
             onClick={() => {
-              this.editHandler(rocket.id);
+              this.props.editHandler(rocket.id);
             }}
           >
             Edit

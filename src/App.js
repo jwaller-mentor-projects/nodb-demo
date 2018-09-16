@@ -8,7 +8,8 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      favorites: []
+      favorites: [],
+      userInput: ""
     };
   }
 
@@ -37,6 +38,21 @@ class App extends Component {
     });
   };
 
+  handleChange = e => {
+    this.setState({ userInput: e.target.value });
+  };
+
+  editHandler = id => {
+    axios
+      .put(`/api/rocket/${id}`, { name: this.state.userInput })
+      .then(response => {
+        axios.get("/api/favorites").then(response => {
+          // console.log("mount response: ", response);
+          this.setState({ favorites: response.data });
+        });
+      });
+  };
+
   render() {
     console.log("favs array: ", this.state.favorites);
     return (
@@ -48,6 +64,8 @@ class App extends Component {
         <Favorites
           favorites={this.state.favorites}
           deleteHandler={this.deleteHandler}
+          editHandler={this.editHandler}
+          handleChange={this.handleChange}
         />
       </div>
     );

@@ -17,11 +17,6 @@ class Rockets extends Component {
     });
   }
 
-  //   handleAdd = rocket => {
-  //     axios.post("/api/favorites", rocket);
-  //     // axios.get("/api/rockets");
-  //   };
-
   render(props) {
     console.log("state: ", this.state);
     let myRockets = this.state.rockets.map(rocket => {

@@ -13,6 +13,11 @@ class App extends Component {
     };
   }
 
+  // Established CRUD methods in app.js and passed them down to my Favorites component
+  // via props. Also set state in app.js instead of Favorites component.
+  // I did this so that the page will re-render automatically after hitting the 'Add to List', 'Delete', or "Edit" buttons
+  // ...instead of having to manually refresh the page to see those changes.
+
   componentDidMount() {
     axios.get("/api/favorites").then(response => {
       console.log("mount response: ", response);

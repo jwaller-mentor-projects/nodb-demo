@@ -29,7 +29,7 @@ class Rockets extends Component {
               this.props.handleAdd({ name: rocket.name, id: rocket.rocketid });
             }}
           >
-            Add to List
+            Add to Favorites List
           </button>
         </div>
       );

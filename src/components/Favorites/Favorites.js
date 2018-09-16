@@ -3,13 +3,6 @@ import axios from "axios";
 import "./Favorites.css";
 
 class Favorites extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      userInput: ""
-    };
-  }
-
   componentDidMount() {
     // console.log("Hello from favorites");
     axios.get("/api/favorites").then(response => {
@@ -35,7 +28,7 @@ class Favorites extends Component {
               this.props.deleteHandler(rocket.id);
             }}
           >
-            delete
+            Delete
           </button>
           <button
             onClick={() => {
